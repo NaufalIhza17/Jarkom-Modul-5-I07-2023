@@ -67,9 +67,6 @@ netmask 255.255.255.252
 
 - Heiter
 ```
-auto lo
-iface lo inet loopback
-
 #A8
 auto eth0
 iface eth0 inet static
@@ -92,9 +89,6 @@ netmask 255.255.252.0
 
 - Frieren
 ```
-auto lo
-iface lo inet loopback
-
 #A7
 auto eth0
 iface eth0 inet static
@@ -117,9 +111,6 @@ netmask 255.255.255.252
 
 - Himmel
 ```
-auto lo
-iface lo inet loopback
-
 #A5
 auto eth0
 iface eth0 inet static
@@ -142,9 +133,6 @@ netmask 255.255.255.128
 
 - Fern
 ```
-auto lo
-iface lo inet loopback
-
 #A3
 auto eth0
 iface eth0 inet static
