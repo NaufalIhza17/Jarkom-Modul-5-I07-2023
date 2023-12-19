@@ -8,6 +8,8 @@
 
 ## Tapologi
 
+![group](https://github.com/NaufalIhza17/Jarkom-Modul-5-I07-2023/assets/89951546/7a0ff416-ed10-4dad-841a-a61aac985882)
+
 ## Route
 
 | Nama Subnet |	Rute                    |	Jumlah IP |	Netmask |
@@ -25,6 +27,8 @@
 |             | Total                   | 1871      | /20     |
 
 ## Tree
+
+![tree](https://github.com/NaufalIhza17/Jarkom-Modul-5-I07-2023/assets/89951546/ee2f00aa-f391-4e87-aece-81e211ed6dd9)
 
 ## Pembagian IP
 
