@@ -44,3 +44,169 @@
 |A6   |2           |2              |0           |10.62.14.140     |/30  |255.255.255.252|10.62.14.141 - 10.62.14.142|10.62.14.143|
 |A7   |2           |2              |0           |10.62.14.144     |/30  |255.255.255.252|10.62.14.145 - 10.62.14.146|10.62.14.147|
 |A8   |2           |2              |0           |10.62.14.148     |/30  |255.255.255.252|10.62.14.149 - 10.62.14.150|10.62.14.151|
+
+## Subnetting
+
+- AURA
+```
+auto eth0
+iface eth0 inet dhcp
+
+#A8
+auto eth1
+iface eth1 inet static
+address 10.62.14.149
+netmask 255.255.255.252
+
+#A7
+auto eth2
+iface eth2 inet static
+address 10.62.14.145
+netmask 255.255.255.252
+```
+
+- Heiter
+```
+auto lo
+iface lo inet loopback
+
+#A8
+auto eth0
+iface eth0 inet static
+address 10.62.14.150
+netmask 255.255.255.252
+gateway 10.62.14.149
+
+#A9
+auto eth1
+iface eth1 inet static
+address 10.62.0.1
+netmask 255.255.248.0
+
+#A10
+auto eth2
+iface eth2 inet static
+address 10.62.8.1
+netmask 255.255.252.0
+```
+
+- Frieren
+```
+auto lo
+iface lo inet loopback
+
+#A7
+auto eth0
+iface eth0 inet static
+address 10.62.14.146
+netmask 255.255.255.252
+gateway 10.62.14.145
+
+#A6
+auto eth1
+iface eth1 inet static
+address 10.62.14.141
+netmask 255.255.255.252
+
+#A5
+auto eth2
+iface eth2 inet static
+address 10.62.14.137
+netmask 255.255.255.252
+```
+
+- Himmel
+```
+auto lo
+iface lo inet loopback
+
+#A5
+auto eth0
+iface eth0 inet static
+address 10.62.14.138
+netmask 255.255.255.252
+gateway 10.62.14.137
+
+#A4
+auto eth1
+iface eth1 inet static
+address 10.62.12.1
+netmask 255.255.254.0
+
+#A3
+auto eth2
+iface eth2 inet static
+address 10.62.14.1
+netmask 255.255.255.128
+```
+
+- Fern
+```
+auto lo
+iface lo inet loopback
+
+#A3
+auto eth0
+iface eth0 inet static
+address 10.62.14.126
+netmask 255.255.255.128
+gateway 10.62.14.1
+
+#A2
+auto eth1
+iface eth1 inet static
+address 10.62.14.133
+netmask 255.255.255.252
+
+#A1
+auto eth2
+iface eth2 inet static
+address 10.62.14.129
+netmask 255.255.255.252
+```
+
+- Revolte
+```
+#A1
+auto eth0
+iface eth0 inet static
+address 10.62.14.130
+netmask 255.255.255.252
+gateway 10.62.14.129
+```
+
+- Richter
+```
+#A2
+auto eth0
+iface eth0 inet static
+address 10.62.14.134
+netmask 255.255.255.252
+gateway 10.62.14.133
+```
+
+- Stark
+```
+#A6
+auto eth0
+iface eth0 inet static
+address 10.62.14.142
+netmask 255.255.255.252
+gateway 10.62.14.141
+```
+
+- Sein
+```
+#A10
+auto eth0
+iface eth0 inet static
+address 10.62.11.254
+netmask 255.255.252.0
+gateway 10.62.8.1
+```
+
+- Client (SchwerMountain, LaubHills, TurkRegion, GrobeForest)
+```
+auto eth0
+iface eth0 inet dhcp
+```
