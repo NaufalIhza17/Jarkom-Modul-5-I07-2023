@@ -136,7 +136,7 @@ netmask 255.255.255.128
 #A3
 auto eth0
 iface eth0 inet static
-address 10.62.14.126
+address 10.62.14.2
 netmask 255.255.255.128
 gateway 10.62.14.1
 
