@@ -210,3 +210,45 @@ gateway 10.62.8.1
 auto eth0
 iface eth0 inet dhcp
 ```
+
+## Routing
+
+- Aura
+```
+#Heiter
+up route add -net 10.62.0.0 netmask 255.255.248.0 gw 10.62.14.150 #A9
+up route add -net 10.62.8.0 netmask 255.255.252.0 gw 10.62.14.150 #A10
+
+#Frieren
+up route add -net 10.62.14.128 netmask 255.255.255.252 gw 10.62.14.146 #A1
+up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.146 #A2
+up route add -net 10.62.14.0 netmask 255.255.255.128 gw 10.62.14.146 #A3
+up route add -net 10.62.12.0 netmask 255.255.254.0 gw 10.62.14.146 #A4
+up route add -net 10.62.14.136 netmask 255.255.255.252 gw 10.62.14.146 #A5
+up route add -net 10.62.14.140 netmask 255.255.255.252 gw 10.62.14.146 #A6
+```
+
+- Heiter
+```
+up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.149 #A8
+```
+
+- Frieren
+```
+up route add -net 10.62.14.128 netmask 255.255.255.252 gw 10.62.14.138 #A1
+up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.138 #A2
+up route add -net 10.62.14.0 netmask 255.255.255.128 gw 10.62.14.138 #A3
+up route add -net 10.62.12.0 netmask 255.255.254.0 gw 10.62.14.138 #A4
+up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.145 #A5
+```
+
+- Himmel
+```
+up route add -net 10.62.14.128 netmask 255.255.255.128 gw 10.62.14.126 #A1
+up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.126 #A2
+up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.137 #A3
+```
+
+- Fern
+```
+up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.1 #A1
