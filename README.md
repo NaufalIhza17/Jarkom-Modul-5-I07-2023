@@ -252,3 +252,160 @@ up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.137 #A3
 - Fern
 ```
 up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.1 #A1
+```
+
+## DNS Configuration
+
+Run this line to node 'Aura' web console :
+```
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.62.0.0/16
+```
+
+Add this line to every node in '.bashrc' : 
+```
+echo 'nameserver 192.168.122.1' > /etc/resolv.conf
+```
+
+Add this following line on DNS Server (Richter) :
+```
+apt update
+apt install netcat -y
+apt install bind9 -y
+
+echo '
+options {
+  directory "/var/cache/bind";
+  forwarders {
+    192.168.122.1;
+  };
+  allow-query {any;};
+  auth-nxdomain no; # conform to RFC1035
+  listen-on-v6 {any;};
+}' > /etc/bind/named.conf.options 
+
+service bind9 restart 
+```
+
+Add this following line on DHCP Server (Revolte) :
+```
+apt update
+apt install netcat -y
+apt install isc-dhcp-server -y
+
+echo 'INTERFACESv4="eth0"' > /etc/default/isc-dhcp-server
+
+echo '
+option domain-name "example.org";
+option domain-name-servers ns1.example.org, ns2.example.org;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+ddns-update-style none;
+
+# A10
+subnet 10.62.8.0 netmask 255.255.252.0 {
+  range 10.62.8.2 10.62.11.254;
+  option routers 10.62.8.1;
+  option broadcast-address 10.62.11.255; 
+  option domain-name-servers 10.62.14.134;
+  default-lease-time 720;
+  max-lease-time 7200;
+}
+
+# A9
+subnet 10.62.0.0 netmask 255.255.248.0 {
+  range 10.62.0.2 10.62.7.254;
+  option routers 10.62.0.1;
+  option broadcast-address 10.62.7.255;
+  option domain-name-servers 10.62.14.134;
+  default-lease-time 720;
+  max-lease-time 7200;
+}
+
+# A4
+subnet 10.62.12.0 netmask 255.255.254.0 {
+  range 10.62.12.2 10.62.13.254;
+  option routers 10.62.12.1;
+  option broadcast-address 10.62.13.255;
+  option domain-name-servers 10.62.14.134;
+  default-lease-time 720;
+  max-lease-time 7200;
+}
+
+# A3
+subnet 10.62.14.0 netmask 255.255.255.128 {
+  range 10.62.14.2 10.62.14.126;
+  option routers 10.62.14.1;
+  option broadcast-address 10.62.14.127;
+  option domain-name-servers 10.62.14.134;
+  default-lease-time 720;
+  max-lease-time 7200;
+}
+
+# A8
+subnet 10.62.14.148 netmask 255.255.255.252 {}
+
+# A7
+subnet 10.62.14.144 netmask 255.255.255.252 {}
+
+# A6
+subnet 10.62.14.140 netmask 255.255.255.252 {}
+
+# A5
+subnet 10.62.14.136 netmask 255.255.255.252 {}
+
+# A2
+subnet 10.62.14.132 netmask 255.255.255.252 {}
+
+# A1
+subnet 10.62.14.128 netmask 255.255.255.252 {}
+' > /etc/dhcp/dhcpd.conf
+
+service isc-dhcp-server start
+```
+
+Add this following line on DHCP Relay (Heiter, Himmel) :
+
+Note: Uncomment `net.ipv4.ip_forward=1` di `nano /etc/sysctl.conf`
+
+```
+apt update
+apt install netcat -y
+apt install isc-dhcp-relay -y
+
+echo '
+SERVERS="10.62.14.130"
+INTERFACES="eth0 eth1 eth2 eth3"
+OPTIONS=""
+' > /etc/default/isc-dhcp-relay
+
+service isc-dhcp-relay restart
+```
+
+Web Server (Sein , Stark)
+```
+apt update
+apt install netcat -y
+apt install apache2 -y
+service apache2 start
+
+echo '
+Listen 80
+Listen 443
+
+<IfModule ssl_module>
+        Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+        Listen 443
+</IfModule>' > /etc/apache2/ports.conf
+```
+
+Add this following line on Client (SchwerMountain, LaubHills, TurkRegion, GrobeForest):
+```
+apt update
+apt install netcat -y
+apt install lynx -y
+```
