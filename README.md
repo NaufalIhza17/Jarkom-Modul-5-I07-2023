@@ -47,7 +47,7 @@
 
 ## Subnetting
 
-- AURA
+- AURA ✅
 ```
 auto eth0
 iface eth0 inet dhcp
@@ -65,7 +65,7 @@ address 10.62.14.145
 netmask 255.255.255.252
 ```
 
-- Heiter
+- Heiter ✅
 ```
 #A8
 auto eth0
@@ -87,7 +87,7 @@ address 10.62.8.1
 netmask 255.255.252.0
 ```
 
-- Frieren
+- Frieren ✅
 ```
 #A7
 auto eth0
@@ -109,7 +109,7 @@ address 10.62.14.137
 netmask 255.255.255.252
 ```
 
-- Himmel
+- Himmel ✅
 ```
 #A5
 auto eth0
@@ -131,7 +131,7 @@ address 10.62.14.1
 netmask 255.255.255.128
 ```
 
-- Fern
+- Fern ✅
 ```
 #A3
 auto eth0
@@ -153,7 +153,7 @@ address 10.62.14.129
 netmask 255.255.255.252
 ```
 
-- Revolte
+- Revolte ✅
 ```
 #A1
 auto eth0
@@ -163,7 +163,7 @@ netmask 255.255.255.252
 gateway 10.62.14.129
 ```
 
-- Richter
+- Richter ✅
 ```
 #A2
 auto eth0
@@ -173,7 +173,7 @@ netmask 255.255.255.252
 gateway 10.62.14.133
 ```
 
-- Stark
+- Stark ✅
 ```
 #A6
 auto eth0
@@ -183,17 +183,17 @@ netmask 255.255.255.252
 gateway 10.62.14.141
 ```
 
-- Sein
+- Sein ✅
 ```
 #A10
 auto eth0
 iface eth0 inet static
-address 10.62.11.254
+address 10.62.8.2
 netmask 255.255.252.0
 gateway 10.62.8.1
 ```
 
-- Client (SchwerMountain, LaubHills, TurkRegion, GrobeForest)
+- Client (SchwerMountain ✅, LaubHills ✅, TurkRegion ✅, GrobeForest ✅)
 ```
 auto eth0
 iface eth0 inet dhcp
@@ -203,58 +203,62 @@ iface eth0 inet dhcp
 
 - Aura
 ```
-#Heiter
-up route add -net 10.62.0.0 netmask 255.255.248.0 gw 10.62.14.150 #A9
-up route add -net 10.62.8.0 netmask 255.255.252.0 gw 10.62.14.150 #A10
+#Heiter (A9, A10) ✅
+up route add -net 10.62.0.0 netmask 255.255.248.0 gw 10.62.14.150
+up route add -net 10.62.8.0 netmask 255.255.252.0 gw 10.62.14.150
 
-#Frieren
-up route add -net 10.62.14.128 netmask 255.255.255.252 gw 10.62.14.146 #A1
-up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.146 #A2
-up route add -net 10.62.14.0 netmask 255.255.255.128 gw 10.62.14.146 #A3
-up route add -net 10.62.12.0 netmask 255.255.254.0 gw 10.62.14.146 #A4
-up route add -net 10.62.14.136 netmask 255.255.255.252 gw 10.62.14.146 #A5
-up route add -net 10.62.14.140 netmask 255.255.255.252 gw 10.62.14.146 #A6
+#Frieren (A1, A2, A3, A4, A5, A6) ✅
+up route add -net 10.62.14.128 netmask 255.255.255.252 gw 10.62.14.146
+up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.146
+up route add -net 10.62.14.0 netmask 255.255.255.128 gw 10.62.14.146
+up route add -net 10.62.12.0 netmask 255.255.254.0 gw 10.62.14.146
+up route add -net 10.62.14.136 netmask 255.255.255.252 gw 10.62.14.146
+up route add -net 10.62.14.140 netmask 255.255.255.252 gw 10.62.14.146
 ```
 
 - Heiter
 ```
-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.149 #A8
+#A8 ✅
+up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.149
 ```
 
 - Frieren
 ```
-up route add -net 10.62.14.128 netmask 255.255.255.252 gw 10.62.14.138 #A1
-up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.138 #A2
-up route add -net 10.62.14.0 netmask 255.255.255.128 gw 10.62.14.138 #A3
-up route add -net 10.62.12.0 netmask 255.255.254.0 gw 10.62.14.138 #A4
-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.145 #A5
+#A1, A2, A3, A4, A5 ✅
+up route add -net 10.62.14.128 netmask 255.255.255.252 gw 10.62.14.138
+up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.138
+up route add -net 10.62.14.0 netmask 255.255.255.128 gw 10.62.14.138
+up route add -net 10.62.12.0 netmask 255.255.254.0 gw 10.62.14.138
+up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.145
 ```
 
 - Himmel
 ```
-up route add -net 10.62.14.128 netmask 255.255.255.128 gw 10.62.14.126 #A1
-up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.126 #A2
-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.137 #A3
+#A1, A2, A5 ✅
+up route add -net 10.62.14.128 netmask 255.255.255.128 gw 10.62.14.2
+up route add -net 10.62.14.132 netmask 255.255.255.252 gw 10.62.14.2
+up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.137
 ```
 
 - Fern
 ```
-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.1 #A1
+#A1 ✅
+up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.62.14.1
 ```
 
 ## DNS Configuration
 
-Run this line to node 'Aura' web console :
+Run this line to node `Aura` web console :
 ```
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.62.0.0/16
 ```
 
-Add this line to every node in '.bashrc' : 
+Add this line to every node in `.bashrc` : 
 ```
 echo 'nameserver 192.168.122.1' > /etc/resolv.conf
 ```
 
-Add this following line on DNS Server (Richter) :
+Add this following line on DNS Server `Richter` :
 ```
 apt update
 apt install netcat -y
@@ -267,14 +271,14 @@ options {
     192.168.122.1;
   };
   allow-query {any;};
-  auth-nxdomain no; # conform to RFC1035
+  auth-nxdomain no;
   listen-on-v6 {any;};
 }' > /etc/bind/named.conf.options 
 
 service bind9 restart 
 ```
 
-Add this following line on DHCP Server (Revolte) :
+Add this following line on DHCP Server `Revolte` :
 ```
 apt update
 apt install netcat -y
@@ -293,7 +297,7 @@ ddns-update-style none;
 
 # A10
 subnet 10.62.8.0 netmask 255.255.252.0 {
-  range 10.62.8.2 10.62.11.254;
+  range 10.21.8.3 10.21.10.5;
   option routers 10.62.8.1;
   option broadcast-address 10.62.11.255; 
   option domain-name-servers 10.62.14.134;
@@ -303,7 +307,7 @@ subnet 10.62.8.0 netmask 255.255.252.0 {
 
 # A9
 subnet 10.62.0.0 netmask 255.255.248.0 {
-  range 10.62.0.2 10.62.7.254;
+  range 10.62.0.2 10.62.4.4;
   option routers 10.62.0.1;
   option broadcast-address 10.62.7.255;
   option domain-name-servers 10.62.14.134;
@@ -313,7 +317,7 @@ subnet 10.62.0.0 netmask 255.255.248.0 {
 
 # A4
 subnet 10.62.12.0 netmask 255.255.254.0 {
-  range 10.62.12.2 10.62.13.254;
+  range 10.62.12.2 10.62.13.1;
   option routers 10.62.12.1;
   option broadcast-address 10.62.13.255;
   option domain-name-servers 10.62.14.134;
@@ -323,8 +327,8 @@ subnet 10.62.12.0 netmask 255.255.254.0 {
 
 # A3
 subnet 10.62.14.0 netmask 255.255.255.128 {
-  range 10.62.14.2 10.62.14.126;
-  option routers 10.62.14.1;
+  range 10.21.14.3 10.21.14.66;
+  option routers 10.21.14.1
   option broadcast-address 10.62.14.127;
   option domain-name-servers 10.62.14.134;
   default-lease-time 720;
@@ -332,28 +336,36 @@ subnet 10.62.14.0 netmask 255.255.255.128 {
 }
 
 # A8
-subnet 10.62.14.148 netmask 255.255.255.252 {}
+subnet 10.62.14.148 netmask 255.255.255.252 {
+	option routers 10.21.14.150;
+}
 
 # A7
-subnet 10.62.14.144 netmask 255.255.255.252 {}
+subnet 10.62.14.144 netmask 255.255.255.252 {
+	option routers 10.21.14.145;
+}
 
 # A6
 subnet 10.62.14.140 netmask 255.255.255.252 {}
 
 # A5
-subnet 10.62.14.136 netmask 255.255.255.252 {}
+subnet 10.62.14.136 netmask 255.255.255.252 {
+	option routers 10.21.14.137;
+}
 
 # A2
 subnet 10.62.14.132 netmask 255.255.255.252 {}
 
 # A1
-subnet 10.62.14.128 netmask 255.255.255.252 {}
+subnet 10.62.14.128 netmask 255.255.255.252 {
+	option routers 10.21.14.129;
+}
 ' > /etc/dhcp/dhcpd.conf
 
 service isc-dhcp-server start
 ```
 
-Add this following line on DHCP Relay (Heiter, Himmel) :
+Add this following line on DHCP Relay `Heiter` & `Himmel` :
 
 Note: Uncomment `net.ipv4.ip_forward=1` di `nano /etc/sysctl.conf`
 
@@ -371,7 +383,7 @@ OPTIONS=""
 service isc-dhcp-relay restart
 ```
 
-Web Server (Sein , Stark)
+Web Server `Sein` , `Stark` :
 ```
 apt update
 apt install netcat -y
@@ -391,7 +403,7 @@ Listen 443
 </IfModule>' > /etc/apache2/ports.conf
 ```
 
-Add this following line on Client (SchwerMountain, LaubHills, TurkRegion, GrobeForest):
+Add this following line on Client `SchwerMountain` , `LaubHills` , `TurkRegion` & `GrobeForest` :
 ```
 apt update
 apt install netcat -y
