@@ -435,7 +435,7 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
 ```
 
-- Add this code to TurkRegion `script.sh` :
+- Add this to TurkRegion `script.sh` :
 
 ![Screenshot 2023-12-20 115448](https://github.com/NaufalIhza17/Jarkom-Modul-5-I07-2023/assets/89951546/23c56857-8673-476f-93a7-e3d3d3377839)
 
@@ -448,3 +448,73 @@ First we run `nc -l -p 8080` on TurkRegion,
 Then we run `nc 10.62.0.4 8080` on other client, for instance GrobeForest 
 
 ![Screenshot 2023-12-20 115347](https://github.com/NaufalIhza17/Jarkom-Modul-5-I07-2023/assets/89951546/ec33e598-1e20-46df-9e82-db5b2a2a4952)
+
+
+# Number 3
+```
+Kepala Suku North Area meminta kalian untuk membatasi DHCP dan DNS Server hanya dapat dilakukan ping oleh maksimal 3 device secara bersamaan, selebihnya akan di drop.
+```
+
+- Add this to `script.sh` on Client (TurkRegion):
+```
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+```
+
+- To test it, try to ping Revolte IP on every client. But the last client to run is the one that has this code (TurkRegion) 
+
+# Number 4
+```
+Lakukan pembatasan sehingga koneksi SSH pada Web Server hanya dapat dilakukan oleh masyarakat yang berada pada GrobeForest.
+```
+
+- Add this to `script.sh` on Sein node:
+```
+iptables -A INPUT -p tcp --dport 22 -m iprange --src-range 10.21.8.3-10.21.10.5 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j DROP
+```
+
+- Result:
+
+![image](https://github.com/NaufalIhza17/Jarkom-Modul-5-I07-2023/assets/89951546/a7e556b5-6705-4eb8-b7ea-b7f3bffd5e91)
+
+# Number 5
+```
+Selain itu, akses menuju WebServer hanya diperbolehkan saat jam kerja yaitu Senin-Jumat pada pukul 08.00-16.00.
+```
+
+- Add this to `script.sh` on Sein node:
+```
+iptables -A INPUT -p tcp --dport 80 -m time --timestart 08:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j DROP
+```
+
+- Result:
+
+![image](https://github.com/NaufalIhza17/Jarkom-Modul-5-I07-2023/assets/89951546/59a8cd88-4f83-4882-902c-34ab22b66921)
+
+# Number 6
+```
+Lalu, karena ternyata terdapat beberapa waktu di mana network administrator dari WebServer tidak bisa stand by, sehingga perlu ditambahkan rule bahwa akses pada hari Senin - Kamis pada jam 12.00 - 13.00 dilarang (istirahat maksi cuy) dan akses di hari Jumat pada jam 11.00 - 13.00 juga dilarang (maklum, Jumatan rek).
+```
+
+# Number 7
+```
+Karena terdapat 2 WebServer, kalian diminta agar setiap client yang mengakses Sein dengan Port 80 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan dan request dari client yang mengakses Stark dengan port 443 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan.
+```
+
+# Number 8
+```
+Karena berbeda koalisi politik, maka subnet dengan masyarakat yang berada pada Revolte dilarang keras mengakses WebServer hingga masa pencoblosan pemilu kepala suku 2024 berakhir. Masa pemilu (hingga pemungutan dan penghitungan suara selesai) kepala suku bersamaan dengan masa pemilu Presiden dan Wakil Presiden Indonesia 2024.
+```
+
+# Number 9
+```
+Sadar akan adanya potensial saling serang antar kubu politik, maka WebServer harus dapat secara otomatis memblokir  alamat IP yang melakukan scanning port dalam jumlah banyak (maksimal 20 scan port) di dalam selang waktu 10 menit. 
+(clue: test dengan nmap)
+```
+
+# Number 10
+```
+Karena kepala suku ingin tau paket apa saja yang di-drop, maka di setiap node server dan router ditambahkan logging paket yang di-drop dengan standard syslog level.
+```
